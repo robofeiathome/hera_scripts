@@ -53,6 +53,7 @@ REPOS=(
   "robofeiathome/hera_tasks"
   "robofeiathome/hera_telegram"
   "robofeiathome/hera_moveit_config"
+  "robofeiathome/hera_scripts"
 )
 
 # Clone the repositories
