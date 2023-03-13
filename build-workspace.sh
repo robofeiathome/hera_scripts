@@ -5,11 +5,12 @@ BIGreen='\033[1;92m'      # Green
 BIBlue='\033[1;94m'       # Blue
 BICyan='\033[1;96m'       # Cyan
 BIWhite='\033[1;97m'      # White
+Off='\033[0m'             # Text Reset
 
-echo "${BIBlue}This script will build the catkin workspace for hera_robot."
+echo -e "${BIBlue}This script will build the catkin workspace for hera_robot.${Off}"
 # Check if script is running with sudo
 if [ "$EUID" -ne 0 ]
-  then echo "${BIRed}Please run this script with sudo!!"
+  then echo -e "${BIRed}Please run this script with sudo!!${Off}"
   exit
 fi
 
@@ -18,7 +19,7 @@ HOME_DIR=/home/"$SUDO_USER"
 
 # Check if ROS Noetic is installed
 if ! dpkg -s ros-noetic-desktop-full > /dev/null 2>&1; then
-  echo "${BIRed}ROS Noetic is not installed. Please install it before running this script!!"
+  echo -e "${BIRed}ROS Noetic is not installed. Please install it before running this script!!${Off}"
   exit
 fi
 
@@ -28,7 +29,7 @@ if [ -n "$BASH_VERSION" ]; then
 elif [ -n "$ZSH_VERSION" ]; then
   SHELL="zsh"
 else
-  echo "${BIRed}This script only supports bash and zsh."
+  echo -e "${BIRed}This script only supports bash and zsh.${Off}"
   exit
 fi
 
@@ -37,13 +38,13 @@ source /opt/ros/noetic/setup."$SHELL"
 
 # Prompt user to enter GitHub personal access token
 echo ""
-echo "${BIBlue}Please enter your GitHub personal access token:"
+echo -e "${BIBlue}Please enter your GitHub personal access token:${Off}"
 # shellcheck disable=SC2162
 read -s TOKEN
 
 # Create the catkin workspace
 echo ""
-echo "${BICyan}Creating catkin workspace..."
+echo -e "${BICyan}Creating catkin workspace...${Off}"
 sudo -u "$SUDO_USER" mkdir -p $HOME_DIR/catkin_ws/src && cd $HOME_DIR/catkin_ws || exit 1
 catkin_make
 
@@ -66,13 +67,13 @@ REPOS=(
 )
 
 # Clone the repositories
-echo "${BIWhite}Cloning hera_robot repositories..."
+echo -e "${BIWhite}Cloning hera_robot repositories...${Off}"
 for REPO in "${REPOS[@]}"; do
   git clone "https://$TOKEN:x-oauth-basic@github.com/$REPO.git"
 done
 
 # Clone 3rd party repositories
-echo "${BIWhite}Cloning 3rd party repositories..."
+echo -e "${BIWhite}Cloning 3rd party repositories...${Off}"
 cd $HOME_DIR/catkin_ws/src || exit 1
 sudo -u "$SUDO_USER" mkdir -p 3rd_party && cd 3rd_party || exit 1
 
@@ -89,35 +90,35 @@ REPOS=(
 )
 
 # Clone the repositories
-echo "${BIWhite}Cloning 3rd party repositories..."
+echo -e "${BIWhite}Cloning 3rd party repositories...${Off}"
 for REPO in "${REPOS[@]}"; do
   git clone "https://$TOKEN:x-oauth-basic@github.com/$REPO.git"
 done
 
 # Get the dependencies from hera/dependencies.txt
-echo "${BICyan}Getting dependencies..."
+echo -e "${BICyan}Getting dependencies...${Off}"
 DEPENDENCIES=()
 while IFS= read -r LINE; do
   DEPENDENCIES+=("$LINE")
 done < $HOME_DIR/catkin_ws/src/hera_robot/hera_scripts/dependencies.txt
 
 # Install dependencies
-echo "${BIBlue}Installing dependencies..."
+echo -e "${BIBlue}Installing dependencies...${Off}"
 for DEPENDENCY in "${DEPENDENCIES[@]}"; do
   apt-get install -y "$DEPENDENCY"
 done
 
 # Get the python dependencies from hera/requirements.txt
-echo "${BICyan}Getting python dependencies..."
+echo -e "${BICyan}Getting python dependencies...${Off}"
 PYTHON_DEPENDENCIES=()
 while IFS= read -r LINE; do
   PYTHON_DEPENDENCIES+=("$LINE")
 done < $HOME_DIR/catkin_ws/src/hera_robot/hera_scripts/requirements.txt
 
 # Install python dependencies
-echo "${BIBlue}Installing python dependencies..."
+echo -e "${BIBlue}Installing python dependencies...${Off}"
 for PYTHON_DEPENDENCY in "${PYTHON_DEPENDENCIES[@]}"; do
   pip3 install "$PYTHON_DEPENDENCY"
 done
 
-echo "${BIGreen}Done!"
+echo -e "${BIGreen}Done!${Off}"
