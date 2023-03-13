@@ -105,4 +105,10 @@ while IFS= read -r LINE; do
   PYTHON_DEPENDENCIES+=("$LINE")
 done < HOME_DIR/catkin_ws/src/hera_robot/hera/requirements.txt
 
+# Install python dependencies
+echo "Installing python dependencies..."
+for PYTHON_DEPENDENCY in "${PYTHON_DEPENDENCIES[@]}"; do
+  pip3 install "$PYTHON_DEPENDENCY"
+done
+
 echo "Done!"
