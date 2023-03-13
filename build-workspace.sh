@@ -6,6 +6,9 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+# Set the user's home directory
+HOME_DIR=/home/"$SUDO_USER"
+
 # Check if ROS Noetic is installed
 if ! dpkg -s ros-noetic-desktop-full > /dev/null 2>&1; then
   echo "ROS Noetic is not installed. Please install it before running this script."
@@ -33,18 +36,15 @@ read -s TOKEN
 
 # Create the catkin workspace
 echo "Creating catkin workspace..."
-mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws || exit 1
-
+mkdir -p HOME_DIR/catkin_ws/src && cd HOME_DIR/catkin_ws || exit 1
 catkin_make
 
 # Source the workspace
 source devel/setup."$SHELL"
 
 # Clone the repositories from hera_robot
-cd ~/catkin_ws/src || exit 1
-mkdir -p hera_robot
-cd hera_robot || exit 1
+cd HOME_DIR/catkin_ws/src || exit 1
+mkdir -p hera_robot && cd hera_robot || exit 1
 
 # List of repositories to clone
 REPOS=(
@@ -63,9 +63,9 @@ for REPO in "${REPOS[@]}"; do
 done
 
 # Clone 3rd party repositories
-cd ~/catkin_ws/src || exit 1
-mkdir -p 3rd_party
-cd 3rd_party || exit 1
+echo "Cloning 3rd party repositories..."
+cd HOME_DIR/catkin_ws/src || exit 1
+mkdir -p 3rd_party && cd 3rd_party || exit 1
 
 # List of repositories to clone
 REPOS=(
@@ -90,7 +90,7 @@ echo "Getting dependencies..."
 DEPENDENCIES=()
 while IFS= read -r LINE; do
   DEPENDENCIES+=("$LINE")
-done < ~/catkin_ws/src/hera_robot/hera/dependencies.txt
+done < HOME_DIR/catkin_ws/src/hera_robot/hera/dependencies.txt
 
 # Install dependencies
 echo "Installing dependencies..."
@@ -103,6 +103,6 @@ echo "Getting python dependencies..."
 PYTHON_DEPENDENCIES=()
 while IFS= read -r LINE; do
   PYTHON_DEPENDENCIES+=("$LINE")
-done < ~/catkin_ws/src/hera_robot/hera/requirements.txt
+done < HOME_DIR/catkin_ws/src/hera_robot/hera/requirements.txt
 
 echo "Done!"
