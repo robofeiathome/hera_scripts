@@ -33,17 +33,16 @@ echo "Please enter your GitHub personal access token:"
 # shellcheck disable=SC2162
 read -s TOKEN
 
-
 # Create the catkin workspace
 echo "Creating catkin workspace..."
-mkdir -p HOME_DIR/catkin_ws/src && cd HOME_DIR/catkin_ws || exit 1
+mkdir -p $HOME_DIR/catkin_ws/src && cd HOME_DIR/catkin_ws || exit 1
 catkin_make
 
 # Source the workspace
 source devel/setup."$SHELL"
 
 # Clone the repositories from hera_robot
-cd HOME_DIR/catkin_ws/src || exit 1
+cd $HOME_DIR/catkin_ws/src || exit 1
 mkdir -p hera_robot && cd hera_robot || exit 1
 
 # List of repositories to clone
@@ -64,7 +63,7 @@ done
 
 # Clone 3rd party repositories
 echo "Cloning 3rd party repositories..."
-cd HOME_DIR/catkin_ws/src || exit 1
+cd $HOME_DIR/catkin_ws/src || exit 1
 mkdir -p 3rd_party && cd 3rd_party || exit 1
 
 # List of repositories to clone
@@ -90,7 +89,7 @@ echo "Getting dependencies..."
 DEPENDENCIES=()
 while IFS= read -r LINE; do
   DEPENDENCIES+=("$LINE")
-done < HOME_DIR/catkin_ws/src/hera_robot/hera/dependencies.txt
+done < $HOME_DIR/catkin_ws/src/hera_robot/hera/dependencies.txt
 
 # Install dependencies
 echo "Installing dependencies..."
@@ -103,7 +102,7 @@ echo "Getting python dependencies..."
 PYTHON_DEPENDENCIES=()
 while IFS= read -r LINE; do
   PYTHON_DEPENDENCIES+=("$LINE")
-done < HOME_DIR/catkin_ws/src/hera_robot/hera/requirements.txt
+done < $HOME_DIR/catkin_ws/src/hera_robot/hera/requirements.txt
 
 # Install python dependencies
 echo "Installing python dependencies..."
