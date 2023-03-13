@@ -35,7 +35,7 @@ read -s TOKEN
 
 # Create the catkin workspace
 echo "Creating catkin workspace..."
-mkdir -p $HOME_DIR/catkin_ws/src && cd HOME_DIR/catkin_ws || exit 1
+mkdir -p $HOME_DIR/catkin_ws/src && cd $HOME_DIR/catkin_ws || exit 1
 catkin_make
 
 # Source the workspace
