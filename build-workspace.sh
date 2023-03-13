@@ -90,7 +90,7 @@ echo "Getting dependencies..."
 DEPENDENCIES=()
 while IFS= read -r LINE; do
   DEPENDENCIES+=("$LINE")
-done < $HOME_DIR/catkin_ws/src/hera_scripts/dependencies.txt
+done < $HOME_DIR/catkin_ws/src/hera_robot/hera_scripts/dependencies.txt
 
 # Install dependencies
 echo "Installing dependencies..."
@@ -103,7 +103,7 @@ echo "Getting python dependencies..."
 PYTHON_DEPENDENCIES=()
 while IFS= read -r LINE; do
   PYTHON_DEPENDENCIES+=("$LINE")
-done < $HOME_DIR/catkin_ws/src/hera_scripts/requirements.txt
+done < $HOME_DIR/catkin_ws/src/hera_robot/hera_scripts/requirements.txt
 
 # Install python dependencies
 echo "Installing python dependencies..."
