@@ -35,7 +35,7 @@ read -s TOKEN
 
 # Create the catkin workspace
 echo "Creating catkin workspace..."
-mkdir -p $HOME_DIR/catkin_ws/src && cd $HOME_DIR/catkin_ws || exit 1
+sudo -u "$SUDO_USER" mkdir -p $HOME_DIR/catkin_ws/src && cd $HOME_DIR/catkin_ws || exit 1
 catkin_make
 
 # Source the workspace
@@ -43,7 +43,7 @@ source devel/setup."$SHELL"
 
 # Clone the repositories from hera_robot
 cd $HOME_DIR/catkin_ws/src || exit 1
-mkdir -p hera_robot && cd hera_robot || exit 1
+sudo -u "$SUDO_USER" mkdir -p hera_robot && cd hera_robot || exit 1
 
 # List of repositories to clone
 REPOS=(
@@ -65,7 +65,7 @@ done
 # Clone 3rd party repositories
 echo "Cloning 3rd party repositories..."
 cd $HOME_DIR/catkin_ws/src || exit 1
-mkdir -p 3rd_party && cd 3rd_party || exit 1
+sudo -u "$SUDO_USER" mkdir -p 3rd_party && cd 3rd_party || exit 1
 
 # List of repositories to clone
 REPOS=(
