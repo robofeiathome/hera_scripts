@@ -12,10 +12,24 @@ if ! dpkg -s ros-noetic-desktop-full > /dev/null 2>&1; then
   exit
 fi
 
+# Check if bash or zsh is being used
+if [ -n "$BASH_VERSION" ]; then
+  SHELL="bash"
+elif [ -n "$ZSH_VERSION" ]; then
+  SHELL="zsh"
+else
+  echo "This script only supports bash and zsh."
+  exit
+fi
+
+# Source ROS
+source /opt/ros/noetic/setup."$SHELL"
+
 # Prompt user to enter GitHub personal access token
 echo "Please enter your GitHub personal access token:"
 # shellcheck disable=SC2162
 read -s TOKEN
+
 
 # Create the catkin workspace
 echo "Creating catkin workspace..."
@@ -23,7 +37,9 @@ mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws || exit 1
 
 catkin_make
-source devel/setup.bash
+
+# Source the workspace
+source devel/setup."$SHELL"
 
 # Clone the repositories from hera_robot
 cd ~/catkin_ws/src || exit 1
