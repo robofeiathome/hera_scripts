@@ -1,0 +1,9 @@
+gTTS
+speechrecognition
+jellyfish
+PyAudio
+face_recognition
+translate
+python-telegram-bot
+emoji
+numpy
