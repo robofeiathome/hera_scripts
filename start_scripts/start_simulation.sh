@@ -22,7 +22,7 @@ export ROSCONSOLE_FORMAT='[${severity}] [${time}]: ${node}: ${message}'
 source devel/setup.bash
 
 ######################################################################
-map_name=fei_k5
+map_name=robocup_2019
 enable_gui=true
 
 # start simulation
