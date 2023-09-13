@@ -19,13 +19,13 @@ echo "my_ip: " $my_ip
 #export ROSCONSOLE_FORMAT='[${severity}] [${time}]: ${node}: ${message}'
 
 # source catkin
-source devel/setup.bash
+source devel/setup.zsh
 
 ######################################################################
 
 # main info
 enable_rviz=false
-map_name=larc_2022_oficial
+map_name=simulation/robocup_2019
 resources='$(find robot_resources)'
 
 # robot info
@@ -33,8 +33,8 @@ robot_name=robot
 robot_model='hera_full'
 
 # robot config 
-init_pos_x=0.0
-init_pos_y=0.0
+init_pos_x=-0.049227
+init_pos_y=1.696732
 init_pos_z=0.0
 init_yaw=0.0
 
@@ -42,14 +42,16 @@ init_yaw=0.0
 enable_hear=false
 enable_talk=false
 enable_map=true
-enable_navigation=false
+enable_navigation=true
 enable_manipulator=false
-enable_head=false
+enable_head=true
 enable_objects=false
 enable_people=false
 enable_color_filter=false
-enable_octomap=true
+enable_octomap=false
 enable_detector=true
+enable_whisper=true
+enable_tracker=true
 
 # start robot
 roslaunch hera bring_up.launch \
@@ -72,4 +74,6 @@ roslaunch hera bring_up.launch \
     enable_objects:=$enable_objects \
     enable_head:=$enable_head \
     enable_octomap:=$enable_octomap \
-    enable_detector:=$enable_detector
+    enable_detector:=$enable_detector \
+    enable_whisper:=$enable_whisper \
+    enable_tracker:=$enable_tracker
