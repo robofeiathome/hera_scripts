@@ -26,6 +26,4 @@ map_name=robocup_2019
 enable_gui=true
 
 # start simulation
-roslaunch social_worlds start_world.launch \
-    world_name:=$map_name \
-    enable_gui:=$enable_gui
+roslaunch hera_simulation simulation.launch
