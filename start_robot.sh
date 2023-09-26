@@ -25,7 +25,7 @@ source devel/setup.zsh
 
 # main info
 enable_rviz=false
-map_name=simulation/robocup_2019
+map_name=fei_k419
 resources='$(find robot_resources)'
 
 # robot info
@@ -39,19 +39,19 @@ init_pos_z=0.0
 init_yaw=0.0
 
 # modules config 
-enable_hear=false
-enable_talk=false
+enable_hear=true
+enable_talk=true
 enable_map=true
 enable_navigation=true
-enable_manipulator=false
+enable_manipulator=true
 enable_head=true
-enable_objects=false
+enable_objects=true
 enable_people=false
 enable_color_filter=false
-enable_octomap=false
+enable_octomap=true
 enable_detector=true
-enable_whisper=true
-enable_tracker=true
+enable_whisper=false
+enable_tracker=false
 
 # start robot
 roslaunch hera bring_up.launch \

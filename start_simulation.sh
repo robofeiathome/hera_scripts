@@ -22,8 +22,10 @@ export ROSCONSOLE_FORMAT='[${severity}] [${time}]: ${node}: ${message}'
 source devel/setup.bash
 
 ######################################################################
-map_name=robocup_2019
+map_name=fei_k5
 enable_gui=true
 
 # start simulation
-roslaunch hera_simulation simulation.launch
+roslaunch social_worlds start_world.launch \
+    world_name:=$map_name \
+    enable_gui:=$enable_gui
