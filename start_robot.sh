@@ -28,6 +28,10 @@ enable_rviz=false
 map_name=fei_k419
 resources='$(find robot_resources)'
 
+model_name=/home/robofei/Workspace/catkin_ws/src/3rd_party/vision_system/detector_2d/models/new_and_old_objects.pt
+# model_name=yolov8n.pt
+
+
 # robot info
 robot_name=robot
 robot_model='hera_full'
@@ -57,6 +61,7 @@ enable_tracker=false
 roslaunch hera bring_up.launch \
     enable_rviz:=$enable_rviz \
     map_name:=$map_name \
+    model_name:=$model_name \
     resources:="$resources" \
     robot_name:=$robot_name \
     robot_model:="$robot_model" \
