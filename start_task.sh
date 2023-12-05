@@ -28,9 +28,10 @@ source devel/setup.bash
 # roslaunch tasks bring_up.launch task:=test_speech
 
 
-
-#roslaunch tasks bring_up.launch task:=PeopleRecognition
+# roslaunch tasks bring_up.launch task:=quiz
+# roslaunch tasks bring_up.launch task:=PeopleRecognition
 roslaunch tasks bring_up.launch task:=ManipulationAndObjectRecognition
-#roslaunch tasks bring_up.launch task:=Receptionist
-#roslaunch tasks bring_up.launch task:=ReceptionistOldSpeech
-#roslaunch tasks bring_up.launch task:=Inspection
+# roslaunch tasks bring_up.launch task:=Receptionist
+# roslaunch tasks bring_up.launch task:=ReceptionistOldSpeech
+# roslaunch tasks bring_up.launch task:=Inspection
+# roslaunch tasks bring_up.launch task:=TakeOutTheGarbage

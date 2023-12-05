@@ -25,10 +25,11 @@ source devel/setup.zsh
 
 # main info
 enable_rviz=false
-map_name=fei_k419
+map_name=larc23
 resources='$(find robot_resources)'
 
 model_name=/home/robofei/Workspace/catkin_ws/src/3rd_party/vision_system/detector_2d/models/new_and_old_objects.pt
+# model_name=/home/robofei/Workspace/catkin_ws/src/3rd_party/vision_system/detector_2d/models/coco.pt
 # model_name=yolov8n.pt
 
 
@@ -45,15 +46,15 @@ init_yaw=0.0
 # modules config 
 enable_hear=true
 enable_talk=true
-enable_map=true
-enable_navigation=true
-enable_manipulator=true
-enable_head=true
-enable_objects=true
-enable_people=false
+enable_map=false
+enable_navigation=false
+enable_manipulator=false
+enable_head=false
+enable_objects=false
+enable_people=true
 enable_color_filter=false
-enable_octomap=true
-enable_detector=true
+enable_octomap=false
+enable_detector=false
 enable_whisper=false
 enable_tracker=false
 

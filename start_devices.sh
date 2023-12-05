@@ -35,13 +35,13 @@ sudo chmod 777 /dev/opencm
 
 # devices config 
 # actuators #
-enable_base=true
+enable_base=false
 enable_dynamixel=true
 # sensors #
-enable_laser_front=true
+enable_laser_front=false
 enable_laser_back=false
-enable_xtion=true
-enable_camera=true
+enable_xtion=false
+enable_camera=false
 enable_kinect=false
 enable_zed_wrapper=false
 # start devices
